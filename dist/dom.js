@@ -28,9 +28,9 @@ export function crearBotonEliminar(fila, callback) {
     return boton;
 }
 // Limpiar campos de entrada
-export function limpiarCampos(inputItem, inputCantidad, inputValor) {
+export function limpiarCampos(inputItem, inputCantidad, inputVenta) {
     inputItem.value = "";
     inputCantidad.value = "1";
-    inputValor.value = "";
+    inputVenta.value = "";
 }
 //# sourceMappingURL=dom.js.map

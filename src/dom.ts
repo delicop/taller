@@ -42,9 +42,9 @@ export function crearBotonEliminar(
 export function limpiarCampos(
   inputItem: HTMLInputElement,
   inputCantidad: HTMLInputElement,
-  inputValor: HTMLInputElement,
+  inputVenta: HTMLInputElement,
 ): void {
   inputItem.value = "";
   inputCantidad.value = "1";
-  inputValor.value = "";
+  inputVenta.value = "";
 }

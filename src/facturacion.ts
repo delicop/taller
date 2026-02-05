@@ -1,11 +1,3 @@
-function mostrarModal() {
-  const modal = document.getElementById("modal")!;
-  modal.classList.add("mostrar");
-}
-function ocultarModal() {
-  const modal = document.getElementById("modal")!;
-  modal.classList.remove("mostrar");
-}
 import {
   calcularValorTotal,
   formatearPesos,
@@ -19,24 +11,34 @@ import {
   limpiarCampos,
 } from "./dom.js";
 
+function mostrarModal() {
+  const modal = document.getElementById("modal")!;
+  modal.classList.add("mostrar");
+}
+
+function ocultarModal() {
+  const modal = document.getElementById("modal")!;
+  modal.classList.remove("mostrar");
+}
+
 // Función principal para agregar un item
 export function agregarItem(
   tablaServicios: HTMLTableSectionElement,
   inputItem: HTMLInputElement,
   inputCantidad: HTMLInputElement,
-  inputValor: HTMLInputElement,
+  inputVenta: HTMLInputElement,
   inputExento: HTMLInputElement,
 ): void {
   const valorTotal = calcularValorTotal(
     Number(inputCantidad.value),
-    Number(inputValor.value),
+    Number(inputVenta.value),
   );
   const esExento = inputExento.checked;
 
   const celdaItem = crearCelda(inputItem.value);
   const celdaCantidad = crearCelda(inputCantidad.value);
   const celdaValorUnitario = crearCelda(
-    formatearPesos(Number(inputValor.value)),
+    formatearPesos(Number(inputVenta.value)),
   );
   const celdaValorTotal = crearCelda(formatearPesos(valorTotal), valorTotal);
   const celdaExento = crearCelda(esExento ? "Si" : "No");
@@ -58,7 +60,7 @@ export function agregarItem(
 
   tablaServicios.appendChild(nuevaFila);
   calcularTotales(tablaServicios);
-  limpiarCampos(inputItem, inputCantidad, inputValor);
+  limpiarCampos(inputItem, inputCantidad, inputVenta);
 }
 
 export function inicializarEventos(): void {
@@ -66,7 +68,7 @@ export function inicializarEventos(): void {
   const tablaServicios = obtenerTabla("tablaServicios");
   const inputItem = obtenerInput("inputItem");
   const inputCantidad = obtenerInput("inputCantidad");
-  const inputValor = obtenerInput("inputValor");
+  const inputVenta = obtenerInput("inputVenta");
   const inputExento = obtenerInput("inputExento");
 
   // Botón "Agregar Servicio" → solo muestra modal
@@ -81,7 +83,7 @@ export function inicializarEventos(): void {
       tablaServicios,
       inputItem,
       inputCantidad,
-      inputValor,
+      inputVenta,
       inputExento,
     );
     ocultarModal();
