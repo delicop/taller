@@ -3,16 +3,19 @@
 
 :root {
     /* Paleta de Colores (Estilo SaaS Moderno) */
-    --primary: #4f46e5; /* Indigo vibrante */
+    --primary: #4f46e5;
     --primary-hover: #4338ca;
     --primary-light: #eef2ff;
-    --text-main: #111827; /* Negro suave */
-    --text-muted: #6b7280; /* Gris texto secundario */
-    --bg-body: #f3f4f6; /* Fondo general */
-    --border: #e5e7eb; /* Bordes sutiles */
-    --danger: #ef4444; /* Rojo para borrar/cancelar */
+    --text-main: #111827;
+    --text-muted: #6b7280;
+    --bg-body: #f3f4f6;
+    --border: #e5e7eb;
+    --danger: #ef4444;
+    --sidebar-bg: #1f2937;
+    --sidebar-text: #d1d5db;
+    --sidebar-active: #4f46e5;
 
-    /* Sombras para profundidad */
+    /* Sombras */
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --shadow-card:
         0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -35,26 +38,105 @@ body {
         BlinkMacSystemFont,
         sans-serif;
     background-color: var(--bg-body);
-    /* Patrón de puntos sutil para fondo técnico */
-    background-image: radial-gradient(#d1d5db 1px, transparent 1px);
-    background-size: 24px 24px;
-    padding: 40px 20px;
     color: var(--text-main);
     line-height: 1.5;
 }
 
-/* 3. CONTENEDOR PRINCIPAL (Tarjeta) */
+/* 3. LAYOUT PRINCIPAL (SIDEBAR + CONTENIDO) */
+.app-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* 4. SIDEBAR */
+.sidebar {
+    width: 260px;
+    background: var(--sidebar-bg);
+    color: var(--sidebar-text);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+}
+
+.sidebar-header {
+    padding: 24px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-header h1 {
+    font-size: 20px;
+    font-weight: 800;
+    color: white;
+    margin: 0;
+}
+
+.sidebar-nav {
+    flex: 1;
+    padding: 20px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    color: var(--sidebar-text);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.nav-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+}
+
+.nav-item.active {
+    background: var(--sidebar-active);
+    color: white;
+    box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
+}
+
+.nav-item .icon {
+    font-size: 18px;
+}
+
+/* 5. CONTENIDO PRINCIPAL */
+.main-content {
+    flex: 1;
+    margin-left: 260px;
+    padding: 40px;
+    background-color: var(--bg-body);
+    background-image: radial-gradient(#d1d5db 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+
 .container {
-    max-width: 950px;
+    max-width: 1200px;
     margin: 0 auto;
     background: white;
     padding: 48px;
     border-radius: 16px;
     box-shadow: var(--shadow-card);
-    border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
-/* 4. TYPOGRAPHY & HEADER */
+/* Secciones (ocultar/mostrar) */
+.seccion {
+    display: block;
+}
+
+/* 6. TYPOGRAPHY */
 h1 {
     font-size: 28px;
     font-weight: 800;
@@ -72,7 +154,7 @@ h2 {
     color: var(--text-main);
 }
 
-/* Caja de Número de Factura */
+/* Número de Factura */
 h1 + div {
     background: var(--primary-light);
     border: 1px solid #c7d2fe;
@@ -101,7 +183,7 @@ h1 + div input {
     padding: 0;
 }
 
-/* 5. FORMULARIOS & INPUTS */
+/* 7. FORMULARIOS & INPUTS */
 label {
     display: block;
     font-size: 13px;
@@ -130,7 +212,7 @@ select:focus {
     box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
 }
 
-/* 6. TABLA DE SERVICIOS */
+/* 8. TABLAS */
 table {
     width: 100%;
     border-collapse: separate;
@@ -166,7 +248,6 @@ tr:last-child td {
     border-bottom: none;
 }
 
-/* Botón eliminar en la tabla */
 td button {
     background: #fee2e2;
     color: var(--danger);
@@ -183,7 +264,33 @@ td button:hover {
     color: white;
 }
 
-/* 7. SECCIÓN DE PAGO (Botón + Select alineados) */
+/* 9. BOTONES */
+button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 14px;
+}
+
+button:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+#agregarCliente {
+    margin-top: 16px;
+}
+
+/* 10. SECCIÓN DE PAGO */
 .payment-section {
     display: flex;
     gap: 12px;
@@ -197,35 +304,15 @@ td button:hover {
     flex-grow: 1;
 }
 
-/* Botón Principal (Agregar) */
 #agregarServicio {
-    background: var(--primary);
-    color: white;
-    border: none;
-    padding: 0 24px;
-    height: 42px; /* Altura igual al input */
-    border-radius: 6px;
-    font-weight: 600;
-    cursor: pointer;
-    transition:
-        transform 0.1s,
-        background 0.2s;
+    height: 42px;
     box-shadow: 0 2px 4px rgba(79, 70, 229, 0.2);
 }
 
-#agregarServicio:hover {
-    background: var(--primary-hover);
-    transform: translateY(-1px);
-}
-
-#agregarServicio:active {
-    transform: translateY(0);
-}
-
-/* 8. SECCIÓN DE TOTALES (Footer de Factura) */
+/* 11. TOTALES */
 .invoice-footer {
     display: flex;
-    justify-content: flex-end; /* Alinea todo a la derecha */
+    justify-content: flex-end;
 }
 
 .totals-box {
@@ -245,7 +332,7 @@ td button:hover {
 }
 
 .total-row input[type="number"] {
-    width: 60px; /* Input de IVA pequeño */
+    width: 60px;
     text-align: right;
     padding: 6px;
 }
@@ -256,7 +343,6 @@ td button:hover {
     font-variant-numeric: tabular-nums;
 }
 
-/* Estilo del TOTAL FINAL */
 .total-row.final {
     margin-top: 12px;
     padding-top: 16px;
@@ -270,7 +356,7 @@ td button:hover {
     color: var(--primary);
 }
 
-/* 9. MODAL */
+/* 12. MODAL */
 .modal {
     display: none;
     position: fixed;
@@ -285,7 +371,6 @@ td button:hover {
     justify-content: center;
 }
 
-/* Mostrar flex al activar */
 .modal.mostrar {
     display: flex !important;
 }
@@ -331,20 +416,11 @@ td button:hover {
 
 .modal-footer button {
     padding: 10px 20px;
-    border-radius: 6px;
-    font-weight: 600;
-    cursor: pointer;
-    border: none;
-    transition: background 0.2s;
 }
 
 #guardarItem {
     background: var(--primary);
     color: white;
-}
-
-#guardarItem:hover {
-    background: var(--primary-hover);
 }
 
 #cancelarModal {
@@ -357,24 +433,27 @@ td button:hover {
     background: #f3f4f6;
 }
 
-/* 10. RESPONSIVE */
+/* 13. RESPONSIVE */
 @media (max-width: 768px) {
+    .sidebar {
+        width: 70px;
+    }
+
+    .sidebar-header h1 {
+        font-size: 24px;
+        text-align: center;
+    }
+
+    .nav-item span:not(.icon) {
+        display: none;
+    }
+
+    .main-content {
+        margin-left: 70px;
+        padding: 20px;
+    }
+
     .container {
         padding: 24px 16px;
-    }
-
-    table {
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
-    }
-
-    .payment-section {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    #agregarServicio {
-        width: 100%;
     }
 }

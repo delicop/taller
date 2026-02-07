@@ -2,14 +2,14 @@ import {
   calcularValorTotal,
   formatearPesos,
   calcularTotales,
-} from "./calculos.js";
+} from "../shared/calculos.js";
 import {
   obtenerInput,
   obtenerTabla,
   crearCelda,
   crearBotonEliminar,
   limpiarCampos,
-} from "./dom.js";
+} from "../shared/dom.js";
 
 function mostrarModal() {
   const modal = document.getElementById("modal")!;

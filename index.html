@@ -7,76 +7,153 @@
         <link rel="stylesheet" href="styles.css" />
     </head>
     <body>
-        <div class="container">
-            <h1>Factura Hangar Service</h1>
-
-            <div>
-                <label>Número de Factura:</label>
-                <input type="text" id="numeroFactura" value="0001" readonly />
-            </div>
-
-            <h2>Servicios</h2>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>Servicio</th>
-                        <th>Cantidad</th>
-                        <th>Valor Unitario</th>
-                        <th>Valor Total</th>
-                        <th>Exento</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody id="tablaServicios"></tbody>
-            </table>
-
-            <div class="payment-section">
-                <div>
-                    <label for="metodoPago">Método de pago</label>
-                    <select id="metodoPago">
-                        <option value="efectivo">Efectivo</option>
-                        <option value="tarjeta">Tarjeta</option>
-                        <option value="transferencia">Transferencia</option>
-                    </select>
+        <div class="app-layout">
+            <!-- SIDEBAR -->
+            <aside class="sidebar">
+                <div class="sidebar-header">
+                    <h1>🏍️ Hangar Service</h1>
                 </div>
-                <button id="agregarServicio">Agregar</button>
-            </div>
+                <nav class="sidebar-nav">
+                    <a href="#" class="nav-item active" data-seccion="clientes">
+                        <span class="icon">👥</span>
+                        <span>Clientes</span>
+                    </a>
+                    <a href="#" class="nav-item" data-seccion="facturacion">
+                        <span class="icon">📄</span>
+                        <span>Facturación</span>
+                    </a>
+                    <a href="#" class="nav-item" data-seccion="inventario">
+                        <span class="icon">📦</span>
+                        <span>Inventario</span>
+                    </a>
+                    <a href="#" class="nav-item" data-seccion="citas">
+                        <span class="icon">📅</span>
+                        <span>Citas</span>
+                    </a>
+                </nav>
+            </aside>
 
-            <div class="invoice-footer">
-                <div class="totals-box">
-                    <div class="total-row">
-                        <label>IVA (%):</label>
-                        <input
-                            type="number"
-                            id="inputIva"
-                            value="19"
-                            min="0"
-                            max="100"
-                        />
-                    </div>
+            <!-- CONTENIDO PRINCIPAL -->
+            <main class="main-content">
+                <div class="container">
+                    <!-- SECCIÓN CLIENTES -->
+                    <section id="seccion-clientes" class="seccion">
+                        <h2>Clientes</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Teléfono</th>
+                                    <th>Cédula</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tablaClientes"></tbody>
+                        </table>
+                        <button id="agregarCliente">Agregar Cliente</button>
+                    </section>
 
-                    <div class="total-row">
-                        <span>Subtotal:</span>
-                        <span id="subtotal">$0</span>
-                    </div>
+                    <!-- SECCIÓN FACTURACIÓN -->
+                    <section
+                        id="seccion-facturacion"
+                        class="seccion"
+                        style="display: none"
+                    >
+                        <h1>Factura Hangar Service</h1>
+                        <div>
+                            <label>Número de Factura:</label>
+                            <input
+                                type="text"
+                                id="numeroFactura"
+                                value="0001"
+                                readonly
+                            />
+                        </div>
 
-                    <div class="total-row">
-                        <span>IVA:</span>
-                        <span id="valorIva">$0</span>
-                    </div>
+                        <h2>Servicios</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Servicio</th>
+                                    <th>Cantidad</th>
+                                    <th>Valor Unitario</th>
+                                    <th>Valor Total</th>
+                                    <th>Exento</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tablaServicios"></tbody>
+                        </table>
 
-                    <div class="total-row final">
-                        <span>Total:</span>
-                        <span id="total" class="amount">$0</span>
-                    </div>
+                        <div class="payment-section">
+                            <div>
+                                <label for="metodoPago">Método de pago</label>
+                                <select id="metodoPago">
+                                    <option value="efectivo">Efectivo</option>
+                                    <option value="tarjeta">Tarjeta</option>
+                                    <option value="transferencia">
+                                        Transferencia
+                                    </option>
+                                </select>
+                            </div>
+                            <button id="agregarServicio">Agregar</button>
+                        </div>
+
+                        <div class="invoice-footer">
+                            <div class="totals-box">
+                                <div class="total-row">
+                                    <label>IVA (%):</label>
+                                    <input
+                                        type="number"
+                                        id="inputIva"
+                                        value="19"
+                                        min="0"
+                                        max="100"
+                                    />
+                                </div>
+                                <div class="total-row">
+                                    <span>Subtotal:</span>
+                                    <span id="subtotal">$0</span>
+                                </div>
+                                <div class="total-row">
+                                    <span>IVA:</span>
+                                    <span id="valorIva">$0</span>
+                                </div>
+                                <div class="total-row final">
+                                    <span>Total:</span>
+                                    <span id="total" class="amount">$0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- SECCIÓN INVENTARIO (placeholder) -->
+                    <section
+                        id="seccion-inventario"
+                        class="seccion"
+                        style="display: none"
+                    >
+                        <h2>Inventario</h2>
+                        <p>Módulo en desarrollo...</p>
+                    </section>
+
+                    <!-- SECCIÓN CITAS (placeholder) -->
+                    <section
+                        id="seccion-citas"
+                        class="seccion"
+                        style="display: none"
+                    >
+                        <h2>Citas</h2>
+                        <p>Módulo en desarrollo...</p>
+                    </section>
                 </div>
-            </div>
+            </main>
         </div>
+
+        <!-- MODAL SERVICIOS -->
         <div id="modal" class="modal">
             <div class="modal-contenido">
                 <h3>Agregar Item</h3>
-
                 <div>
                     <label>Item:</label>
                     <input type="text" id="inputItem" />
@@ -87,7 +164,7 @@
                 </div>
                 <div>
                     <label>Costo:</label>
-                    <input type="number" id="inputValor" value="0" min="0" />
+                    <input type="number" id="inputCosto" value="0" min="0" />
                 </div>
                 <div>
                     <label>Venta:</label>
@@ -97,7 +174,6 @@
                     <label>Exento:</label>
                     <input type="checkbox" id="inputExento" />
                 </div>
-
                 <div class="modal-footer">
                     <button id="guardarItem">Guardar</button>
                     <button id="cancelarModal">Cancelar</button>
