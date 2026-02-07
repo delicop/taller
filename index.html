@@ -14,7 +14,15 @@
                     <h1>🏍️ Hangar Service</h1>
                 </div>
                 <nav class="sidebar-nav">
-                    <a href="#" class="nav-item active" data-seccion="clientes">
+                    <a
+                        href="#"
+                        class="nav-item active"
+                        data-seccion="ordenIngreso"
+                    >
+                        <span class="icon">🏠</span>
+                        <span>Orden ingreso</span>
+                    </a>
+                    <a href="#" class="nav-item" data-seccion="clientes">
                         <span class="icon">👥</span>
                         <span>Clientes</span>
                     </a>
@@ -149,7 +157,28 @@
                 </div>
             </main>
         </div>
-
+        <!-- MODAL CLIENTES -->
+        <div id="modalCliente" class="modal">
+            <div class="modal-contenido">
+                <h3>Agregar Cliente</h3>
+                <div>
+                    <label>Nombre:</label>
+                    <input type="text" id="inputNombreCliente" />
+                </div>
+                <div>
+                    <label>Teléfono:</label>
+                    <input type="tel" id="inputTelefonoCliente" />
+                </div>
+                <div>
+                    <label>Cedula:</label>
+                    <input type="number" id="inputCedulaCliente" />
+                </div>
+                <div class="modal-footer">
+                    <button id="guardarCliente">Guardar</button>
+                    <button id="cancelarModalCliente">Cancelar</button>
+                </div>
+            </div>
+        </div>
         <!-- MODAL SERVICIOS -->
         <div id="modal" class="modal">
             <div class="modal-contenido">

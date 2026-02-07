@@ -1,7 +1,9 @@
-import { inicializarEventos } from "./facturacion/facturacion.js";
+import { inicializarFacturacion } from "./facturacion/facturacion.js";
 import { cambiarSeccion } from "./navegacion/navegacion.js";
 import { inicializarNavegacion } from "./navegacion/navegacion.js";
+import { inicializarCliente } from "./clientes/cliente.js";
 
 // Inicializar la aplicación
 inicializarNavegacion();
-inicializarEventos();
+inicializarCliente();
+inicializarFacturacion();

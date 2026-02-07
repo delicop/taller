@@ -1,10 +1,10 @@
 import { calcularValorTotal, formatearPesos, calcularTotales, } from "../shared/calculos.js";
 import { obtenerInput, obtenerTabla, crearCelda, crearBotonEliminar, limpiarCampos, } from "../shared/dom.js";
-function mostrarModal() {
+export function mostrarModal() {
     const modal = document.getElementById("modal");
     modal.classList.add("mostrar");
 }
-function ocultarModal() {
+export function ocultarModal() {
     const modal = document.getElementById("modal");
     modal.classList.remove("mostrar");
 }
@@ -32,7 +32,7 @@ export function agregarItem(tablaServicios, inputItem, inputCantidad, inputVenta
     calcularTotales(tablaServicios);
     limpiarCampos(inputItem, inputCantidad, inputVenta);
 }
-export function inicializarEventos() {
+export function inicializarFacturacion() {
     const btnAgregar = document.getElementById("agregarServicio");
     const tablaServicios = obtenerTabla("tablaServicios");
     const inputItem = obtenerInput("inputItem");
