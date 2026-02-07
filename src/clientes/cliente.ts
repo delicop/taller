@@ -1,4 +1,9 @@
-import { obtenerTabla, obtenerInput } from "../shared/dom.js";
+import {
+  obtenerTabla,
+  obtenerInput,
+  crearBotonEliminar,
+  limpiarCampos,
+} from "../shared/dom.js";
 
 function mostrarModal() {
   const modal = document.getElementById("modalCliente")!;
@@ -22,10 +27,16 @@ export function agregarcliente(
   const celdaNombre = nuevaFila.insertCell();
   const celdaNumero = nuevaFila.insertCell();
   const celdaCedula = nuevaFila.insertCell();
-
   celdaNombre.textContent = nombreCliente;
   celdaNumero.textContent = numeroCliente;
   celdaCedula.textContent = cedulaCliente;
+
+  const celdaAccion = document.createElement("td");
+  const btnEliminar = crearBotonEliminar(nuevaFila, () => {});
+  celdaAccion.appendChild(btnEliminar);
+  nuevaFila.appendChild(celdaAccion);
+
+  limpiarCampos(inputNombreCliente, inputNumeroCliente, inputCedulaCliente);
 }
 
 export function inicializarCliente(): void {
