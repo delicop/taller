@@ -1,3 +1,27 @@
+/* 1. IMPORTACIÓN DE FUENTES Y VARIABLES */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+:root {
+    /* Paleta de Colores (Estilo SaaS Moderno) */
+    --primary: #4f46e5; /* Indigo vibrante */
+    --primary-hover: #4338ca;
+    --primary-light: #eef2ff;
+    --text-main: #111827; /* Negro suave */
+    --text-muted: #6b7280; /* Gris texto secundario */
+    --bg-body: #f3f4f6; /* Fondo general */
+    --border: #e5e7eb; /* Bordes sutiles */
+    --danger: #ef4444; /* Rojo para borrar/cancelar */
+
+    /* Sombras para profundidad */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-card:
+        0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-modal:
+        0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* 2. RESET Y BASES */
 * {
     margin: 0;
     padding: 0;
@@ -9,297 +33,348 @@ body {
         "Inter",
         -apple-system,
         BlinkMacSystemFont,
-        "Segoe UI",
         sans-serif;
-    background: #f5f7fa;
+    background-color: var(--bg-body);
+    /* Patrón de puntos sutil para fondo técnico */
+    background-image: radial-gradient(#d1d5db 1px, transparent 1px);
+    background-size: 24px 24px;
     padding: 40px 20px;
-    color: #1a1a1a;
+    color: var(--text-main);
+    line-height: 1.5;
 }
 
-/* Container principal */
+/* 3. CONTENEDOR PRINCIPAL (Tarjeta) */
 .container {
-    max-width: 900px;
+    max-width: 950px;
     margin: 0 auto;
     background: white;
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 48px;
+    border-radius: 16px;
+    box-shadow: var(--shadow-card);
+    border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
-/* Header */
+/* 4. TYPOGRAPHY & HEADER */
 h1 {
-    color: #1a1a1a;
     font-size: 28px;
+    font-weight: 800;
+    color: var(--text-main);
+    margin-bottom: 24px;
+    letter-spacing: -0.03em;
+}
+
+h2 {
+    font-size: 18px;
     font-weight: 700;
-    margin-bottom: 8px;
-    letter-spacing: -0.5px;
+    margin: 32px 0 16px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
+    color: var(--text-main);
 }
 
-/* Número de factura */
+/* Caja de Número de Factura */
 h1 + div {
-    background: #f8fafc;
-    padding: 16px;
+    background: var(--primary-light);
+    border: 1px solid #c7d2fe;
+    padding: 16px 20px;
     border-radius: 8px;
-    border: 1px solid #e2e8f0;
-    margin-bottom: 32px;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 20px;
+    min-width: 200px;
 }
 
-label {
-    font-size: 14px;
+h1 + div label {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: var(--primary);
+    font-weight: 700;
+}
+
+h1 + div input {
+    background: transparent;
+    border: none;
+    font-size: 18px;
     font-weight: 600;
-    color: #64748b;
-    margin-right: 12px;
+    color: var(--primary-hover);
+    padding: 0;
 }
 
-/* Inputs */
+/* 5. FORMULARIOS & INPUTS */
+label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+}
+
 input[type="text"],
 input[type="number"],
 select {
+    width: 100%;
     padding: 10px 12px;
-    border: 1.5px solid #e2e8f0;
+    border: 1px solid var(--border);
     border-radius: 6px;
-    font-size: 15px;
-    transition: all 0.2s;
+    font-size: 14px;
     background: white;
+    transition: all 0.2s ease;
+    color: var(--text-main);
 }
 
-input[type="text"]:focus,
-input[type="number"]:focus,
+input:focus,
 select:focus {
     outline: none;
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
 }
 
-input[readonly] {
-    background-color: #f8fafc;
-    color: #64748b;
-}
-
-/* Títulos de sección */
-h2 {
-    font-size: 20px;
-    font-weight: 600;
-    color: #1a1a1a;
-    margin: 32px 0 16px 0;
-    padding-bottom: 8px;
-    border-bottom: 2px solid #e2e8f0;
-}
-
-h3 {
-    font-size: 16px;
-    font-weight: 600;
-    color: #475569;
-    margin: 24px 0 12px 0;
-}
-
-/* Tabla */
+/* 6. TABLA DE SERVICIOS */
 table {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
-    margin: 16px 0 24px 0;
-    border: 1px solid #e2e8f0;
+    margin-bottom: 30px;
+    border: 1px solid var(--border);
     border-radius: 8px;
     overflow: hidden;
 }
 
 thead {
-    background: #f8fafc;
+    background: #f9fafb;
 }
 
 th {
-    padding: 14px 16px;
     text-align: left;
+    padding: 12px 16px;
+    font-size: 12px;
     font-weight: 600;
-    font-size: 13px;
-    color: #64748b;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    border-bottom: 1px solid #e2e8f0;
-}
-
-tbody tr {
-    border-bottom: 1px solid #f1f5f9;
-    transition: background-color 0.15s;
-}
-
-tbody tr:hover {
-    background-color: #f8fafc;
-}
-
-tbody tr:last-child {
-    border-bottom: none;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
 }
 
 td {
-    padding: 14px 16px;
+    padding: 12px 16px;
     font-size: 14px;
-    color: #1a1a1a;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-main);
 }
 
-/* Botones */
-button {
-    padding: 10px 20px;
-    font-size: 14px;
-    font-weight: 600;
+tr:last-child td {
+    border-bottom: none;
+}
+
+/* Botón eliminar en la tabla */
+td button {
+    background: #fee2e2;
+    color: var(--danger);
+    padding: 6px 10px;
+    font-size: 12px;
+    border-radius: 4px;
     border: none;
-    border-radius: 6px;
     cursor: pointer;
-    transition: all 0.2s;
+    font-weight: 600;
 }
 
-#agregarServicio {
-    background: #3b82f6;
+td button:hover {
+    background: var(--danger);
     color: white;
-    padding: 12px 24px;
-    font-size: 15px;
-    margin: 8px 0 24px 0;
+}
+
+/* 7. SECCIÓN DE PAGO (Botón + Select alineados) */
+.payment-section {
+    display: flex;
+    gap: 12px;
+    align-items: flex-end;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed var(--border);
+}
+
+.payment-section div {
+    flex-grow: 1;
+}
+
+/* Botón Principal (Agregar) */
+#agregarServicio {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 0 24px;
+    height: 42px; /* Altura igual al input */
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        transform 0.1s,
+        background 0.2s;
+    box-shadow: 0 2px 4px rgba(79, 70, 229, 0.2);
 }
 
 #agregarServicio:hover {
-    background: #2563eb;
+    background: var(--primary-hover);
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
 #agregarServicio:active {
     transform: translateY(0);
 }
 
-/* Botón eliminar */
-tbody button {
-    background: #ef4444;
-    color: white;
-    padding: 6px 14px;
-    font-size: 13px;
+/* 8. SECCIÓN DE TOTALES (Footer de Factura) */
+.invoice-footer {
+    display: flex;
+    justify-content: flex-end; /* Alinea todo a la derecha */
 }
 
-tbody button:hover {
-    background: #dc2626;
+.totals-box {
+    width: 100%;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
-/* Formulario */
-div {
-    margin-bottom: 16px;
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: var(--text-muted);
 }
 
-div label {
-    display: inline-block;
-    min-width: 140px;
+.total-row input[type="number"] {
+    width: 60px; /* Input de IVA pequeño */
+    text-align: right;
+    padding: 6px;
 }
 
-/* Select */
-select {
-    padding: 10px 32px 10px 12px;
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2364748b' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 12px center;
-    cursor: pointer;
-}
-
-/* Totales */
-h3:last-of-type {
-    margin-top: 32px;
-    padding-top: 16px;
-    border-top: 2px solid #e2e8f0;
-}
-
-#subtotal,
-#total {
-    font-weight: 700;
-    font-size: 18px;
-    color: #16a34a;
-    margin-left: 12px;
-}
-
-div:has(#total) {
-    font-size: 16px;
+.total-row span:last-child {
+    color: var(--text-main);
     font-weight: 600;
+    font-variant-numeric: tabular-nums;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    body {
-        padding: 20px 12px;
-    }
-
-    .container {
-        padding: 24px 16px;
-    }
-
-    table {
-        font-size: 13px;
-    }
-
-    th,
-    td {
-        padding: 10px 12px;
-    }
+/* Estilo del TOTAL FINAL */
+.total-row.final {
+    margin-top: 12px;
+    padding-top: 16px;
+    border-top: 2px solid var(--border);
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text-main);
 }
-/* MODAL */
+
+.total-row.final .amount {
+    color: var(--primary);
+}
+
+/* 9. MODAL */
 .modal {
-    display: none; /* Oculto por defecto */
+    display: none;
     position: fixed;
     z-index: 1000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro transparente */
+    background-color: rgba(17, 24, 39, 0.6);
+    backdrop-filter: blur(4px);
+    align-items: center;
+    justify-content: center;
+}
+
+/* Mostrar flex al activar */
+.modal.mostrar {
+    display: flex !important;
 }
 
 .modal-contenido {
-    background-color: white;
-    margin: 10% auto;
-    padding: 30px;
-    border-radius: 12px;
+    background: white;
     width: 90%;
-    max-width: 500px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    max-width: 450px;
+    padding: 32px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-modal);
+    animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .modal-contenido h3 {
     margin-top: 0;
-    margin-bottom: 20px;
-    color: #1a1a1a;
-    border-bottom: 2px solid #e2e8f0;
-    padding-bottom: 10px;
+    margin-bottom: 24px;
+    font-size: 20px;
+    color: var(--text-main);
+}
+
+.modal-contenido div {
+    margin-bottom: 16px;
 }
 
 .modal-footer {
+    margin-top: 32px;
     display: flex;
-    gap: 10px;
     justify-content: flex-end;
-    margin-top: 25px;
-    padding-top: 20px;
-    border-top: 1px solid #e2e8f0;
+    gap: 10px;
 }
 
 .modal-footer button {
     padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: background 0.2s;
 }
 
 #guardarItem {
-    background: #3b82f6;
+    background: var(--primary);
     color: white;
 }
 
 #guardarItem:hover {
-    background: #2563eb;
+    background: var(--primary-hover);
 }
 
 #cancelarModal {
-    background: #e5e7eb;
-    color: #374151;
+    background: white;
+    color: var(--text-main);
+    border: 1px solid var(--border);
 }
 
 #cancelarModal:hover {
-    background: #d1d5db;
+    background: #f3f4f6;
 }
 
-/* Mostrar modal */
-.modal.mostrar {
-    display: block;
+/* 10. RESPONSIVE */
+@media (max-width: 768px) {
+    .container {
+        padding: 24px 16px;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .payment-section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #agregarServicio {
+        width: 100%;
+    }
 }

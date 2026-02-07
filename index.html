@@ -1,17 +1,19 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Taller Motos</title>
+        <title>Taller Motos - Facturación</title>
         <link rel="stylesheet" href="styles.css" />
     </head>
     <body>
-        <h1>Factura Hangar Service</h1>
+        <div class="container">
+            <h1>Factura Hangar Service</h1>
 
-        <div>
-            <label>Numero de Factura:</label>
-            <input type="text" id="numeroFactura" value="0001" readonly />
+            <div>
+                <label>Número de Factura:</label>
+                <input type="text" id="numeroFactura" value="0001" readonly />
+            </div>
 
             <h2>Servicios</h2>
 
@@ -21,16 +23,56 @@
                         <th>Servicio</th>
                         <th>Cantidad</th>
                         <th>Valor Unitario</th>
-                        <th>valor Total</th>
+                        <th>Valor Total</th>
                         <th>Exento</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody id="tablaServicios"></tbody>
             </table>
-        </div>
 
-        <h3>AGREGAR</h3>
+            <div class="payment-section">
+                <div>
+                    <label for="metodoPago">Método de pago</label>
+                    <select id="metodoPago">
+                        <option value="efectivo">Efectivo</option>
+                        <option value="tarjeta">Tarjeta</option>
+                        <option value="transferencia">Transferencia</option>
+                    </select>
+                </div>
+                <button id="agregarServicio">Agregar</button>
+            </div>
+
+            <div class="invoice-footer">
+                <div class="totals-box">
+                    <div class="total-row">
+                        <label>IVA (%):</label>
+                        <input
+                            type="number"
+                            id="inputIva"
+                            value="19"
+                            min="0"
+                            max="100"
+                        />
+                    </div>
+
+                    <div class="total-row">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">$0</span>
+                    </div>
+
+                    <div class="total-row">
+                        <span>IVA:</span>
+                        <span id="valorIva">$0</span>
+                    </div>
+
+                    <div class="total-row final">
+                        <span>Total:</span>
+                        <span id="total" class="amount">$0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div id="modal" class="modal">
             <div class="modal-contenido">
                 <h3>Agregar Item</h3>
@@ -63,32 +105,6 @@
             </div>
         </div>
 
-        <h3>Metodo de pago</h3>
-
-        <select id="metodoPago">
-            <option value="efectivo">efectivo</option>
-            <option value="tajeta">tarjeta</option>
-            <option value="tranferencia">Tranferencia</option>
-        </select>
-        <button id="agregarServicio">Agregar</button>
-
-        <h3>Total</h3>
-        <div>
-            <label>IVA (%):</label>
-            <input type="number" id="inputIva" value="19" min="0" max="100" />
-        </div>
-        <div>
-            <label>Subtotal:</label>
-            <span id="subtotal">$0</span>
-        </div>
-        <div>
-            <label>IVA:</label>
-            <span id="valorIva">$0</span>
-        </div>
-        <div>
-            <label>Total:</label>
-            <span id="total">$0</span>
-        </div>
         <script type="module" src="dist/main.js"></script>
     </body>
 </html>
